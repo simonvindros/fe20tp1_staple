@@ -1,0 +1,33 @@
+/* Make it local */
+@import url('https://rsms.me/inter/inter.css');
+
+/* Style Components */
+@import url("styles/side-nav.css");
+@import url("styles/note-list.css");
+@import url("styles/note-editor.css");
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Inter";
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
+main {
+    display: flex;
+    height: 100%;
+}
+
+@media (orientation: portrait) {
+    .note-editor {
+        display: none !important;
+    }
+}

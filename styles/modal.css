@@ -1,0 +1,64 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    
+}
+
+/* STYLING FOR MODAL CONTENT BOX */
+
+#content {
+    margin: auto;
+    position: absolute;
+    top: 200px;
+    left: 40%;
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 40vw;
+    font-family: 'Gayathri', sans-serif;
+    background-color: #07B1A3;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    z-index: 2;
+    filter: drop-shadow(3px 3px 1px #000000);
+    
+}
+
+h4,
+h5 {
+    text-shadow: 1px 1px rgb(255, 255, 255), 0px 0px 5px rgb(209, 209, 209), 0px 0px 20px rgb(255, 255, 255);
+}
+h4 {
+    font-size: 18px;
+}
+#team {
+    font-size:20px;
+    text-shadow: 1px 1px whitesmoke;
+}
+
+p {
+    font-weight: 600;
+}
+ /* Styling for ok button */
+#btnMsg {
+    background-color: #f3f3f3;
+    margin-top: 10px;
+    color: #042c27;
+    font-size: 30px;
+    font-weight: 600;
+    padding: 3px 15px;
+    font-weight: 300;
+    -webkit-appearance: none;
+    border-style: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#btnMsg:hover { 
+    background-color: rgb(238, 210, 241);
+    filter: drop-shadow(2px 2px 1px #000000);
+
+}

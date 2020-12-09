@@ -5,6 +5,8 @@
 @import url("styles/side-nav.css");
 @import url("styles/note-list.css");
 @import url("styles/note-editor.css");
+@import url("styles/dark.css");
+@import url("styles/modal.css");
 
 * {
     box-sizing: border-box;
@@ -19,6 +21,7 @@ html {
 
 body {
     height: 100%;
+    background-color: var(--bg)
 }
 
 main {

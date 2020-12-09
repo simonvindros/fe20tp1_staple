@@ -1,20 +1,5 @@
 // Quire - **Rough** functional draft
 
-// tinymce.init({
-//     init_instance_callback: function(editor) {
-//         editor.on('input', function() {
-//             saveNote();
-//         });
-//     },
-//     selector: '#body-text-area',
-//     inline: true,
-//     toolbar: false,
-//     menubar: false,
-//     plugins: 'quickbars',
-//     quickbars_insert_toolbar: false,
-//     placeholder: 'Enter note here'
-// });
-
 const titleInput = document.querySelector("#title-input");
 const newNoteBtn = document.querySelector("#new-note-btn");
 const deleteNoteBtn = document.querySelector("#delete-note-btn");
@@ -78,13 +63,37 @@ function newNote() {
 // renderNote(obj) --> Shows the note in the note list
 
 function renderNote(obj) {
-    let noteItem = document.createElement("li");
-    noteItem.innerHTML = `<h3>${obj.title}</h3><p>${obj.body}</p>`;
+	let noteItem = document.createElement("li");
+	
+	let plainTextBody = obj.body.replace(/<(\S*?)[^>]*>.*?|<.*? \/>/g, ""); // fix line-break removal ellipsis
+	plainTextBody = plainTextBody.replaceAll("&nbsp;", " ");
+
+    if (obj.favorite) {
+        noteItem.innerHTML = `<div class="note-wrapper"><div class="content-wrapper"><h3>${obj.title}</h3><p>${plainTextBody}</p></div><div class="info-wrapper"><div class="tag-wrapper"><p>#food</p></div><div class="date-wrapper"><p>${obj.date}</p></div></div></div><div class="toolbar-wrapper"><button><i class="fas fa-star"></i></button></div>`;
+    } else {
+        noteItem.innerHTML = `<div class="note-wrapper"><div class="content-wrapper"><h3>${obj.title}</h3><p>${plainTextBody}</p></div><div class="info-wrapper"><div class="tag-wrapper"><p>#food</p></div><div class="date-wrapper"><p>${obj.date}</p></div></div></div><div class="toolbar-wrapper"><button><i class="far fa-star"></i></button></div>`;
+    }
+
     noteItem.setAttribute("data-id", obj.id);
     noteList.appendChild(noteItem);
 
-    noteItem.addEventListener("click", function() {
-        viewNote(obj);
+    noteItem.addEventListener("click", function(evt) {
+        if (evt.target.closest("i")) {
+            if (evt.target.classList.contains("far")) {
+                evt.target.classList.remove("far");
+                evt.target.classList.add("fas");
+                obj.favorite = true;
+            } else if (evt.target.classList.contains("fas")) {
+                evt.target.classList.remove("fas");
+                evt.target.classList.add("far");
+                obj.favorite = false;
+            }
+
+            localStorage.setItem("noteListKey", JSON.stringify(noteListArray));
+            
+        } else {
+           viewNote(obj); 
+        }
     });
 }
 
@@ -104,17 +113,20 @@ function viewNote(obj) {
 function saveNote() {
     for (let i = 0; i < noteListArray.length; i++) {
         if (noteListArray[i].id == activeObjId) {
-            noteListArray[i].title = titleInput.value;
-            noteListArray[i].body = tinymce.get("body-text-area").getContent();
+			noteListArray[i].title = titleInput.value;
+			noteListArray[i].body = tinymce.get("body-text-area").getContent();
 
-            let noteItem = document.querySelector([`[data-id="${noteListArray[i].id}"]`]);
-
-            // make obj.body plain text, and 'squish' linebreaks
-
-            noteItem.innerHTML = `<h3>${noteListArray[i].title}</h3><p>${noteListArray[i].body}</p>`;
+			let plainTextBody = tinymce.get("body-text-area").getContent({ format: "text" }); // fix line-break removal ellipsis
+			
+			let noteItem = document.querySelector([`[data-id="${noteListArray[i].id}"]`]);
+            if (noteListArray[i].favorite) {
+                noteItem.innerHTML = `<div class="note-wrapper"><div class="content-wrapper"><h3>${noteListArray[i].title}</h3><p>${plainTextBody}</p></div><div class="info-wrapper"><div class="tag-wrapper"><p>#food</p></div><div class="date-wrapper"><p>${noteListArray[i].date}</p></div></div></div><div class="toolbar-wrapper"><button><i class="fas fa-star"></i></button></div>`;
+            } else if (noteListArray[i].favorite) {
+                noteItem.innerHTML = `<div class="note-wrapper"><div class="content-wrapper"><h3>${noteListArray[i].title}</h3><p>${plainTextBody}</p></div><div class="info-wrapper"><div class="tag-wrapper"><p>#food</p></div><div class="date-wrapper"><p>${noteListArray[i].date}</p></div></div></div><div class="toolbar-wrapper"><button><i class="far fa-star"></i></button></div>`;
+            }
 
             document.title = `Quire - ${noteListArray[i].title}`;
-
+            
             localStorage.setItem("noteListKey", JSON.stringify(noteListArray));
         }
     }
@@ -145,6 +157,8 @@ function deleteNote() {
     }
 }
 
+/* NON-EDITOR CODE */
+
 // Miscellaneous
 
 function getDate() {
@@ -156,6 +170,8 @@ function getDate() {
     return `${day}/${month}-${year}`;
 }
 
-/* NON-EDITOR CODE */
+// show editor when hidden and clicking on a note
+//
+//
 
 // Light & Dark Theme

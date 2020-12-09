@@ -11,7 +11,6 @@
     <!-- make it local -->
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 
-    <!-- make it import -->
     <script src="scripts/tinyInitialize.js" defer></script>
     <script src="main.js" defer></script>
     <script src="tinymce/tinymce.min.js"></script>
@@ -31,9 +30,11 @@
         </nav>
         <ul name="note-list" class="note-list" id="note-list"></ul>
         <div name="note" class="note-editor">
-            <input id="title-input" placeholder="Enter title">
-            <hr class="title-underline">
-            <div id="body-text-area" placeholder="Enter note"></div>
+			<div class="editor-container">
+				<input id="title-input" placeholder="Enter title">
+				<hr class="title-underline">
+				<div id="body-text-area"></div>
+			</div>
         </div>
     </main>
 </body>

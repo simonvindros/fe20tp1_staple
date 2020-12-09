@@ -1,6 +1,6 @@
 .side-nav {
     min-width: 50px;
-    background: var(--bg-nav);
+    background: #07b1a3;
 }
 
 .main-side-nav {
@@ -17,12 +17,12 @@
 }
 
 .side-nav li:hover {
-    background-color: var(--hover);
+    background-color: #000000ec;
 }
 
 .side-nav li a {
     text-decoration: none;
-    color: var(--color-li);
+    color: #ffffff;
 }
 
 .last-item {

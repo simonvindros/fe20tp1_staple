@@ -12,7 +12,8 @@
     border: 1px solid rgb(189, 189, 189);
     padding: 5px 10px 10px 10px;
     margin: 3px 3px 3px 3px;
-    background-color: rgb(247, 247, 247);
+    background-color: var(--bg-note-list);
+    color: var(--color-p);
     min-height: 83.6px;
 }
 

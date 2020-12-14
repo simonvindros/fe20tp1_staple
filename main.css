@@ -5,6 +5,7 @@
 @import url("styles/side-nav.css");
 @import url("styles/note-list.css");
 @import url("styles/note-editor.css");
+@import url("styles/landing-modal.css");
 
 * {
     box-sizing: border-box;

@@ -162,7 +162,7 @@ function getDate() {
 //////////////////////////////////////////////////////////////////////////////////
 // Light & Dark Theme
 
-var checkbox = document.querySelector('input[name=theme]');
+var checkbox = document.querySelector('input[name=onoffswitch]');
 
 checkbox.addEventListener('change', function() {
     if(this.checked) {

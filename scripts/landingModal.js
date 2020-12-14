@@ -1,6 +1,5 @@
 // Hämta värde från localStorage
 const hasVisitedBefore = JSON.parse(localStorage.getItem('hasVisitedBefore'));
-console.log(hasVisitedBefore);
 
 // Hämtar modal
 const modal = document.getElementById("landing-modal");

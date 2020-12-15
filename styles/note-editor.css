@@ -41,9 +41,11 @@
 	height: 3rem;
 	font-weight: 700;
 	font-size: 1.75rem;
+	color: var(--color-title);
 	border: none;
-    outline: none;  /* not so good accessibility */
-    background: none;
+	outline: none;  /* not so good accessibility */
+	background: none;
+    
 }
 
 .editor-container {
@@ -57,7 +59,8 @@
 #body-text-area {
     flex: 1;
 	font-size: 18px;
-    line-height: 140%;
+	line-height: 140%;
+	color: var(--color-p);
 }
 
 #body-text-area ul, #body-text-area ol {

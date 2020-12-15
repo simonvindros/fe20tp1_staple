@@ -158,4 +158,57 @@ function getDate() {
 
 /* NON-EDITOR CODE */
 
+
+//////////////////////////////////////////////////////////////////////////////////
 // Light & Dark Theme
+
+var checkbox = document.querySelector('input[name=onoffswitch]');
+
+checkbox.addEventListener('change', function() {
+    if(this.checked) {
+        trans()
+        document.documentElement.setAttribute('data-theme', 'dark')
+    } else {
+        trans()
+        document.documentElement.setAttribute('data-theme', 'light')
+    }
+})
+
+let trans = () => {
+    document.documentElement.classList.add('transition');
+    window.setTimeout(() => {
+        document.documentElement.classList.remove('transition')
+    }, 1000)
+}
+
+
+
+
+/* Selector for modal container */
+
+const msgContainer = document.querySelector('#content');
+// Window onload function
+window.onload = function () {
+
+    // check localstorage if message has already been seen
+
+    let checked = localStorage.getItem('checked');
+
+    if (checked === 'true') {
+        msgContainer.style.display = "none";
+
+        // selector for msg button
+        
+            
+
+        } else {
+            msgContainer.style.display = "block"
+        }
+        localStorage.setItem('checked', 'true');
+    }
+
+// Eventlistener for ok button
+
+btnMsg.addEventListener('click', () => {
+    msgContainer.style.display = 'none';
+})

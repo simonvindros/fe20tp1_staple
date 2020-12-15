@@ -18,6 +18,7 @@
 }
 
 .toolbar-buttons > button {
+	color: var(--color-button);
 	background: none;
 	border: none;
 	border-radius: 50%;

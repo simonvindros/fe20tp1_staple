@@ -2,33 +2,54 @@
 html {
     --bg: #ffffff;
     --bg-nav:  #07b1a3;
-    --bg-note-list: #E4E4E4;
-    --bg-note-items: #c5c5c5;
+    --bg-note-list: #e4e4e4;
+    --bg-note-items: #c5c5c5;  /* #c5c5c5 */
+    --active: #ffffff;
     /* text colors*/
     --color-title: #000000;
     --color-underline: lightgray;
     --color-li: #ffffff;
     --color-p: black;
     --hover: black;
+    --color-button: #000000;
 }
 
 /* DARK MODE COLORS == */
 html[data-theme='dark'] {
-    --bg: #131313;
+    --bg: #010a0af8;
     --bg-nav:  #011d1b;
-    --bg-note-list: rgb(61, 61, 61);
+    --bg-note-list: #0a19202c;
     --bg-note-items: #c5c5c5;
     --color-title: #ffffff;
     --color-underline: #ffffff;
     --color-li: #068b80;
     --color-p: whitesmoke;
     --hover: whitesmoke;
+    --color-button: #FFFFFF;
+    --color-note-title: #97a2a311;
+    --active: #010a0af8;
 }
 
+.note-list h3 {
+color: #808080; 
+}
+
+p {
+    color: var(--color-p);
+}
+
+.fa-star {
+    color: #8f8e8e;
+}
 
     body {
         background-color: var(--bg)
     }
+
+    .note-list li.active {
+        background-color: var(--active);
+    }
+    
 
     /* li dark mode == */ /* anchor-taggarna är borta, så denna måste ändras */
 .side-nav li{

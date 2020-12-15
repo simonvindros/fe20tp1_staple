@@ -28,5 +28,3 @@ tinymce.init({
     quickbars_insert_toolbar: false,
     placeholder: 'Enter note here'
 });
-
-console.log('tjenixen')

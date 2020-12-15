@@ -1,9 +1,49 @@
 .note-editor {
-    flex: 2;
+    flex: 3;
     display: flex;
     justify-content: center;
-    /* flex-direction: column; */
     padding: 3rem;
+}
+
+.title-toolbar {
+    display: flex;
+	border-bottom: 0.1rem solid rgb(228, 228, 228);
+    margin-bottom: 0.75rem;
+}
+
+.toolbar-buttons {
+	display: flex;
+	gap: 0.25rem;
+	margin-bottom: 0.25rem;
+}
+
+.toolbar-buttons > button {
+	background: none;
+	border: none;
+	border-radius: 50%;
+	width: 48px;
+	height: 48px;
+    cursor: pointer;
+	outline: none;
+	transition: background-color 0.2s ease-out;
+}
+
+.toolbar-buttons > button:hover {
+	background-color: rgb(224, 224, 224);
+}
+
+.toolbar-buttons i {
+	font-size: 16px;
+}
+
+#title-input {
+	flex: 1;
+	height: 3rem;
+	font-weight: 700;
+	font-size: 1.75rem;
+	border: none;
+    outline: none;  /* not so good accessibility */
+    background: none;
 }
 
 .editor-container {
@@ -11,31 +51,16 @@
     flex-direction: column;
     width: 100%;
     max-width: 600px;
-	overflow: auto;
-}
-
-#title-input {
-    height: 3rem;
-    font-weight: 700;
-    font-size: 1.75rem;
-    border: none;
-    outline: none;  /* not so good accessibility */
-}
-
-.title-underline {
-    margin-bottom: 0.25rem;
-    margin-bottom: 0.75rem;
-    border: solid 0.5px lightgray;
-    background-color: lightgray;
+    overflow-y: auto;
 }
 
 #body-text-area {
     flex: 1;
-	font-size: 17px;
+	font-size: 18px;
     line-height: 140%;
 }
 
-#body-text-area ul {
+#body-text-area ul, #body-text-area ol {
     padding-left: 2rem;
 }
 

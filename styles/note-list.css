@@ -1,27 +1,46 @@
 .note-list {
     flex: 1;
-    min-width: 250px;
-    display: flex;
+	/* min-width: 225px; */
+	display: flex;
     flex-direction: column;
-    text-decoration: none;
+    /* text-decoration: none; */
     list-style: none;
-    overflow: auto;
+    overflow-y: auto;
+    background-color: rgb(241, 241, 241);
 }
 
 .note-list li {
-    display: flex;
-    padding: 7px 11px 13px 11px;
-    margin: 3px 3px 3px 3px;
-	border-bottom: 1px solid lightgrey;
-	height: min-content;
-	cursor: pointer;
+	display: flex;
+    padding: 0.25rem;
+	min-height: min-content;
+    cursor: pointer;
+    background-color: rgba(228, 228, 228);
 }
+
+.note-list li.active {
+    background-color: white;
+}
+
+/* .note-list li.hidden {
+    display: none;
+} */
+
+.note-list li.empty-state {
+    margin: auto;
+    background: none;
+    text-align: center;
+    color: grey;
+    border: none;
+}
+
+/* https://css-tricks.com/examples/GradientBorder/ */
 
 .note-wrapper {
     flex: 1;
     display: flex;
 	flex-direction: column;
-	gap: 0.75rem;
+    gap: 0.75rem;
+    padding: 0.5rem;
 }
 
 .content-wrapper {
@@ -31,35 +50,46 @@
 }
 
 .content-wrapper > h3 {
-	font-size: 1.3rem;
+	font-size: 1.1rem;
+}
+
+.content-wrapper > p {
+	font-size: 0.9rem;
 }
 
 .info-wrapper {
     display: flex;
-    justify-content: space-between;
+	justify-content: space-between;
 }
 
 .tag-wrapper > p {
-	font-size: 0.9rem;
+	font-size: 0.8rem;
     font-weight: 500;
     color: grey;
 }
 
 .date-wrapper > p {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: grey;
 }
 
 .toolbar-wrapper {
     display: flex;
 	flex-direction: column;
-	padding: 0.25rem 0.5rem;
 }
 
 .toolbar-wrapper > button {
 	background: none;
 	border: none;
-	cursor: pointer;
+    cursor: pointer;
+    outline: none;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.2s ease-out;
+}
+
+.toolbar-wrapper > button:hover {
+    background-color: rgb(208, 208, 208);
 }
 
 .toolbar-wrapper i {

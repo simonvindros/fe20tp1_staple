@@ -3,18 +3,27 @@
 const titleInput = document.querySelector("#title-input");
 const newNoteBtn = document.querySelector("#new-note-btn");
 const deleteNoteBtn = document.querySelector("#delete-note-btn");
+const printNoteBtn = document.querySelector("#print-note-btn");
+const logoBtn = document.querySelector("#logo-btn");
+const favoriteBtn = document.querySelector("#favorite-btn");
 const noteList = document.querySelector("#note-list");
+const msgContainer = document.querySelector('#content');
 
 let noteListArray;
 let activeObjId;
 
+let favoriteTrueString;
+let favoriteFalseString;
+
+let windowSize;
+
 class NoteConstructor {
     constructor() {
-        this.id = Date.now();
-        this.favorite = false;
-        this.title = `Untitled ${noteListArray.length + 1}`; // should check title number instead of length
+        this.title = "Untitled"
         this.body = "";
         this.tags = [];
+        this.favorite = false;
+        this.id = Date.now();
         this.date = getDate(); // maybe redundant, and fix locale
     }
 }
@@ -24,14 +33,21 @@ window.addEventListener("load", function() {
         noteListArray = JSON.parse(localStorage.getItem("noteListKey"));
         for (let i = 0; i < noteListArray.length; i++) {
             renderNote(noteListArray[i]);
-            if (i == 0) {
+            if (i == noteListArray.length - 1) {
                 viewNote(noteListArray[i]);
             }
         }
     } else {
         noteListArray = [];
         newNote();
-    }
+    }  
+});
+
+checkIfModalTrue();
+checkWindowSize();
+
+window.addEventListener("resize", function(){
+    checkWindowSize();
 });
 
 titleInput.addEventListener("input", function() {
@@ -46,6 +62,18 @@ deleteNoteBtn.addEventListener("click", function() {
     if (confirm(`Are you sure you want to delete "${document.title.slice(8)}?"`)) { // not best way to get title
         deleteNote();
     }
+});
+
+printNoteBtn.addEventListener("click", function() {
+    window.print();
+});
+
+logoBtn.addEventListener("click", function() {
+    showAllNotes();
+});
+
+favoriteBtn.addEventListener("click", function() {
+    filterFavorite();
 });
 
 // newNote() --> Creates a new note, and pushes it to the array
@@ -63,23 +91,22 @@ function newNote() {
 // renderNote(obj) --> Shows the note in the note list
 
 function renderNote(obj) {
-	let noteItem = document.createElement("li");
+    let noteItem = document.createElement("li");
+    noteItem.classList.add("note-list-item");
 	
 	let plainTextBody = obj.body.replace(/<(\S*?)[^>]*>.*?|<.*? \/>/g, ""); // fix line-break removal ellipsis
-	plainTextBody = plainTextBody.replaceAll("&nbsp;", " ");
+    plainTextBody = plainTextBody.replaceAll("&nbsp;", " ");
 
-    if (obj.favorite) {
-        noteItem.innerHTML = `<div class="note-wrapper"><div class="content-wrapper"><h3>${obj.title}</h3><p>${plainTextBody}</p></div><div class="info-wrapper"><div class="tag-wrapper"><p>#food</p></div><div class="date-wrapper"><p>${obj.date}</p></div></div></div><div class="toolbar-wrapper"><button><i class="fas fa-star"></i></button></div>`;
-    } else {
-        noteItem.innerHTML = `<div class="note-wrapper"><div class="content-wrapper"><h3>${obj.title}</h3><p>${plainTextBody}</p></div><div class="info-wrapper"><div class="tag-wrapper"><p>#food</p></div><div class="date-wrapper"><p>${obj.date}</p></div></div></div><div class="toolbar-wrapper"><button><i class="far fa-star"></i></button></div>`;
-    }
+    favoriteTrueString = `<div class="note-wrapper"> <div class="content-wrapper"> <h3>${obj.title}</h3> <p>${plainTextBody}</p> </div> <div class="info-wrapper"> <div class="tag-wrapper"> <p>#food</p> </div> <div class="date-wrapper"> <p>${obj.date}</p> </div> </div> </div> <div class="toolbar-wrapper"><button><i class="fas fa-star"></i></button></i></button></div>`;
+    favoriteFalseString = `<div class="note-wrapper"> <div class="content-wrapper"> <h3>${obj.title}</h3> <p>${plainTextBody}</p> </div> <div class="info-wrapper"> <div class="tag-wrapper"> <p>#food</p> </div> <div class="date-wrapper"> <p>${obj.date}</p> </div> </div> </div> <div class="toolbar-wrapper"><button><i class="far fa-star"></i></button></i></button></div>`;
+    noteItem.innerHTML = checkState(obj.favorite);
 
     noteItem.setAttribute("data-id", obj.id);
-    noteList.appendChild(noteItem);
+    noteList.insertBefore(noteItem, noteList.firstChild);
 
     noteItem.addEventListener("click", function(evt) {
         if (evt.target.closest("i")) {
-            if (evt.target.classList.contains("far")) {
+            if (evt.target.classList.contains("far")) { // perhaps change to toggle
                 evt.target.classList.remove("far");
                 evt.target.classList.add("fas");
                 obj.favorite = true;
@@ -92,7 +119,26 @@ function renderNote(obj) {
             localStorage.setItem("noteListKey", JSON.stringify(noteListArray));
             
         } else {
-           viewNote(obj); 
+            viewNote(obj);
+
+            let noteEditor = document.querySelector(".note-editor");
+            let logoBtn = document.querySelector("#logo-btn");
+            let backBtn = document.querySelector("#back-btn");
+            
+            if (windowSize == "landscape") {
+                console.log("do nothing?");
+            } else if (windowSize == "portrait") {
+                noteEditor.style.display = "flex";
+                noteList.style.display = "none";
+                logoBtn.style.display = "none";
+                backBtn.classList.add("visible");
+                backBtn.addEventListener("click", function() {
+                    noteEditor.style.display = "none";
+                    noteList.style.display = "flex";
+                    logoBtn.style.display = "flex";
+                    backBtn.classList.remove("visible");
+                });
+            }
         }
     });
 }
@@ -106,6 +152,8 @@ function viewNote(obj) {
     document.title = `Quire - ${obj.title}`;
 
     activeObjId = obj.id;
+
+    setActiveItem(obj);
 }
 
 // saveNote() --> Finds the active note in the array, updates the data, and then saves it to local storage
@@ -119,15 +167,15 @@ function saveNote() {
 			let plainTextBody = tinymce.get("body-text-area").getContent({ format: "text" }); // fix line-break removal ellipsis
 			
 			let noteItem = document.querySelector([`[data-id="${noteListArray[i].id}"]`]);
-            if (noteListArray[i].favorite) {
-                noteItem.innerHTML = `<div class="note-wrapper"><div class="content-wrapper"><h3>${noteListArray[i].title}</h3><p>${plainTextBody}</p></div><div class="info-wrapper"><div class="tag-wrapper"><p>#food</p></div><div class="date-wrapper"><p>${noteListArray[i].date}</p></div></div></div><div class="toolbar-wrapper"><button><i class="fas fa-star"></i></button></div>`;
-            } else if (noteListArray[i].favorite) {
-                noteItem.innerHTML = `<div class="note-wrapper"><div class="content-wrapper"><h3>${noteListArray[i].title}</h3><p>${plainTextBody}</p></div><div class="info-wrapper"><div class="tag-wrapper"><p>#food</p></div><div class="date-wrapper"><p>${noteListArray[i].date}</p></div></div></div><div class="toolbar-wrapper"><button><i class="far fa-star"></i></button></div>`;
+            if (noteListArray[i].favorite) { // fix similar to the other one, when variable-issues are solved
+                noteItem.innerHTML = `<div class="note-wrapper"> <div class="content-wrapper"> <h3>${noteListArray[i].title}</h3> <p>${plainTextBody}</p> </div> <div class="info-wrapper"> <div class="tag-wrapper"> <p>#food</p> </div> <div class="date-wrapper"> <p>${noteListArray[i].date}</p> </div> </div> </div> <div class="toolbar-wrapper"><button><i class="fas fa-star"></i></button></i></button></div>`;
+            } else {
+                noteItem.innerHTML = `<div class="note-wrapper"> <div class="content-wrapper"> <h3>${noteListArray[i].title}</h3> <p>${plainTextBody}</p> </div> <div class="info-wrapper"> <div class="tag-wrapper"> <p>#food</p> </div> <div class="date-wrapper"> <p>${noteListArray[i].date}</p> </div> </div> </div> <div class="toolbar-wrapper"><button><i class="far fa-star"></i></button></i></button></div>`;
             }
 
             document.title = `Quire - ${noteListArray[i].title}`;
             
-            localStorage.setItem("noteListKey", JSON.stringify(noteListArray));
+            localStorage.setItem("noteListKey", JSON.stringify(noteListArray)); // maybe not save empty objects in the array
         }
     }
 }
@@ -170,9 +218,41 @@ function getDate() {
     return `${day}/${month}-${year}`;
 }
 
-// show editor when hidden and clicking on a note
-//
-//
+function setActiveItem(obj) {
+    let noteListItems = document.querySelectorAll('.note-list-item');
+    for (let i = 0; i < noteListItems.length; i++) {
+        if (noteListItems[i].getAttribute("data-id") == obj.id) {
+            noteListItems[i].classList.add("active");  
+        } else {
+            noteListItems[i].classList.remove("active");
+        }
+    }
+}
+
+function filterFavorite() {
+    for (let i = 0; i < noteListArray.length; i++) {
+        if (!noteListArray[i].favorite) {
+            let noteItem = document.querySelector([`[data-id="${noteListArray[i].id}"]`]);
+            noteItem.style.display = "none";  
+        }
+
+        let noteListItems = document.querySelectorAll('.note-list-item');
+        let count = 0;
+        for (let i = 0; i < noteListItems.length; i++) {
+            if (noteListItems[i].style.display == "none") {
+                count += 1;
+            }
+        }
+        
+        if (noteListItems.length == count) {
+            let emptyState = document.createElement("li");
+            emptyState.classList.add("note-list-item");
+            emptyState.classList.add("empty-state");
+            emptyState.innerHTML = "No favorite notes :(";
+            noteList.appendChild(emptyState);
+        }
+    }
+}
 
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -202,9 +282,9 @@ let trans = () => {
 
 /* Selector for modal container */
 
-const msgContainer = document.querySelector('#content');
-// Window onload function
-window.onload = function () {
+//const msgContainer = document.querySelector('#content');
+// Window onload function - vi har gett den ett namn och kallat på den tidigare i filen på rad 30 nånting, även lagt queryselector högst i dokumentet
+function checkIfModalTrue () {
 
     // check localstorage if message has already been seen
 
@@ -226,5 +306,52 @@ window.onload = function () {
 // Eventlistener for ok button
 
 btnMsg.addEventListener('click', () => {
+    console.log('entered modal')
     msgContainer.style.display = 'none';
-})
+});
+
+
+//         if (noteListItems.length == count) {
+//             let emptyState = document.createElement("li");
+//             emptyState.classList.add("note-list-item");
+//             emptyState.classList.add("empty-state");
+//             emptyState.innerHTML = "No favorite notes :(";
+//             noteList.appendChild(emptyState);
+//         }
+//     }
+// }
+
+function showAllNotes() {
+    let noteListItems = document.querySelectorAll('.note-list-item');
+    for (let i = 0; i < noteListItems.length; i++) {
+        if (noteListItems[i].style.display == "none") {
+            noteListItems[i].style.display = "flex";  
+        } else if (noteListItems[i].classList.contains("empty-state")) {
+            noteListItems[i].remove();
+        }
+    }
+}
+
+function checkState(boolean) {
+    return (boolean ? favoriteTrueString : favoriteFalseString);
+}
+
+function checkWindowSize() {
+    let xAxis = document.documentElement.clientWidth;
+    // let yAxis = document.documentElement.clientHeight;
+    let noteEditor = document.querySelector(".note-editor");
+    let backBtn = document.querySelector("#back-btn");
+	let logoBtn = document.querySelector("#logo-btn");
+
+    if (xAxis > 1000) {
+        noteEditor.style.display = "flex";
+        noteList.style.display = "flex";
+        backBtn.classList.remove("visible");
+        logoBtn.style.display = "flex";
+        return windowSize = "landscape";
+
+    } else if (xAxis <= 1000 && windowSize != "portrait") {
+        noteEditor.style.display = "none";
+        return windowSize = "portrait";
+    }
+}

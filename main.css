@@ -13,6 +13,8 @@
     margin: 0;
     padding: 0;
     font-family: "Inter";
+    min-width: 0;
+    min-height: 0;
 }
 
 html {
@@ -21,7 +23,6 @@ html {
 
 body {
     height: 100%;
-    background-color: var(--bg)
 }
 
 main {
@@ -29,8 +30,22 @@ main {
     height: 100%;
 }
 
-@media (orientation: portrait) {
-    .note-editor {
+@media print {
+    .side-nav, .note-list, .toolbar-buttons {
         display: none !important;
     }
+
+    .editor-container {
+        width: auto;
+        height: auto;
+        overflow: visible;
+    }
+}
+
+.button-inactive {
+    color: rgb(200, 200, 200);
+}
+
+.button-inactive.alt {
+    color: rgb(144, 144, 144);
 }

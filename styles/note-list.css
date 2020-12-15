@@ -6,7 +6,7 @@
     /* text-decoration: none; */
     list-style: none;
     overflow-y: auto;
-    background-color: rgb(241, 241, 241);
+    background-color: var(--bg-note-list);
 }
 
 .note-list li {
@@ -14,7 +14,7 @@
     padding: 0.25rem;
 	min-height: min-content;
     cursor: pointer;
-    background-color: rgba(228, 228, 228);
+    background-color: var(--bg-note-items);
 }
 
 .note-list li.active {

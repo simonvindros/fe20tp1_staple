@@ -1,6 +1,6 @@
 .side-nav {
 	width: 48px;
-    background: #07b1a3;
+    background: var(--bg-nav);
 }
 
 .main-side-nav {
@@ -27,7 +27,7 @@
 } */
 
 .side-nav li:hover {
-    background-color: black;
+    background-color: var(--hover);
 }
 
 #back-btn {

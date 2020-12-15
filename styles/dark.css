@@ -1,11 +1,13 @@
 /* LIGHT MODE COLORS == */
 html {
-    height: 100%; /* denna finns redan i main.css */
-    --bg: whitesmoke;
+    --bg: #ffffff;
     --bg-nav:  #07b1a3;
-    --bg-note-list:  rgb(247, 247, 247);
+    --bg-note-list: #E4E4E4;
+    --bg-note-items: #c5c5c5;
+    /* text colors*/
+    --color-title: #000000;
     --color-underline: lightgray;
-    --color-li: whitesmoke;
+    --color-li: #ffffff;
     --color-p: black;
     --hover: black;
 }
@@ -14,9 +16,11 @@ html {
 html[data-theme='dark'] {
     --bg: #131313;
     --bg-nav:  #011d1b;
-    --bg-note-list:  rgb(61, 61, 61);
-    --color-underline: whitesmoke;
-    --color-li: #07b1a3;
+    --bg-note-list: rgb(61, 61, 61);
+    --bg-note-items: #c5c5c5;
+    --color-title: #ffffff;
+    --color-underline: #ffffff;
+    --color-li: #068b80;
     --color-p: whitesmoke;
     --hover: whitesmoke;
 }
@@ -27,7 +31,7 @@ html[data-theme='dark'] {
     }
 
     /* li dark mode == */ /* anchor-taggarna är borta, så denna måste ändras */
-.side-nav li a {
+.side-nav li{
     text-decoration: none;
     color: var(--color-li);
 }
@@ -48,7 +52,7 @@ html[data-theme='dark'] {
 }
 .onoffswitch-label {
     display: block; overflow: hidden; cursor: pointer;
-    border: 2px solid #999999; border-radius: 20px;
+    border: 2px solid #ffffff; border-radius: 20px;
 }
 .onoffswitch-inner {
     display: block; width: 200%; margin-left: -100%;

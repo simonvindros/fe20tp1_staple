@@ -16,9 +16,9 @@ html {
 
 /* DARK MODE COLORS == */
 html[data-theme='dark'] {
-    --bg: #010a0af8;
+    --bg: #010a0a;
     --bg-nav:  #011d1b;
-    --bg-note-list: #0a19202c;
+    --bg-note-list: #0c1214;
     --bg-note-items: #c5c5c5;
     --color-title: #ffffff;
     --color-underline: #ffffff;
@@ -27,7 +27,7 @@ html[data-theme='dark'] {
     --hover: whitesmoke;
     --color-button: #FFFFFF;
     --color-note-title: #97a2a311;
-    --active: #010a0af8;
+    --active: #010a0a;
 }
 
 .note-list h3 {
@@ -87,12 +87,12 @@ p {
 .onoffswitch-inner:before {
     content: "";
     padding-left: 5px;
-    background-color: #07B1A3; color: #FFFFFF;
+    background-color: #04625A; color: #FFFFFF;
 }
 .onoffswitch-inner:after {
     content: "";
     padding-right: 5px;
-    background-color: #011D1B; color: #999999;
+    background-color: #068b80; color: #999999;
     text-align: right;
 }
 .onoffswitch-switch {

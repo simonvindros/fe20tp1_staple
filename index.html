@@ -19,20 +19,28 @@
     <main>
         <nav class="side-nav">
             <ul class="main-side-nav">
-                <li><a href="#"><h2>Q</h2></a></li>
-                <li id="new-note-btn"><a href="#"><i class="fas fa-pen"></i></a></li>
-                <li id="delete-note-btn"><a href="#"><i class="fas fa-trash"></i></a></li>
-                <li><a href="#"><i class="fas fa-search"></i></a></li>
-                <li><a href="#"><i class="fas fa-heart"></i></a></li>
-                <li><a href="#"><i class="fas fa-chart-bar"></i></a></li>
-                <li class="last-item"><a href="#"><i class="fas fa-cog"></i></a></li>
+                <li id="logo-btn"><h2>Q</h2></li>
+                <li id="back-btn"><i class="fas fa-arrow-left"></i></li>
+                <li id="new-note-btn"><i class="fas fa-pen"></i></li>
+                <li id="favorite-btn"><i class="fas fa-heart"></i></li>
+                <li><i class="fas fa-search button-inactive"></i></li>
+                <li><i class="fas fa-chart-bar button-inactive"></i></li>
+                <li class="last-item"><i class="fas fa-cog button-inactive"></i></li>
             </ul>
         </nav>
-        <ul name="note-list" class="note-list" id="note-list"></ul>
-        <div name="note" class="note-editor">
+
+        <ul class="note-list" id="note-list"></ul>
+
+        <div class="note-editor">
 			<div class="editor-container">
-				<input id="title-input" placeholder="Enter title">
-				<hr class="title-underline">
+				<div class="title-toolbar">
+					<input id="title-input" placeholder="Enter title">
+					<div class="toolbar-buttons">
+						<button id="delete-note-btn"><i class="fas fa-trash"></i></button>
+						<button id="print-note-btn"><i class="fas fa-print"></i></button>
+						<button><i class="fas fa-ellipsis-v button-inactive alt"></i></button>
+					</div>
+				</div>
 				<div id="body-text-area"></div>
 			</div>
         </div>

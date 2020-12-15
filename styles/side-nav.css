@@ -1,28 +1,45 @@
 .side-nav {
-    min-width: 50px;
+	width: 48px;
     background: #07b1a3;
 }
 
 .main-side-nav {
     list-style: none;
-    display: flex;
+	display: flex;
     height: 100%;
-    flex-direction: column;
-    overflow: auto;
+	flex-direction: column;
+    overflow-y: auto;
 }
 
-.side-nav li {
-    padding: 15px;
+.main-side-nav li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	min-width: 48px;
+    min-height: 48px;
+    color: white;
     font-size: 1rem;
+    cursor: pointer;
 }
+
+/* .side-nav li.hidden {
+    display: none;
+} */
 
 .side-nav li:hover {
-    background-color: #000000ec;
+    background-color: black;
 }
 
-.side-nav li a {
-    text-decoration: none;
-    color: #ffffff;
+#back-btn {
+    display: none;
+}
+
+#back-btn.visible {
+    display: flex;
+}
+
+.fas.fa-arrow-left {
+    font-size: 20px;
 }
 
 .last-item {

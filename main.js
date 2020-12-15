@@ -43,7 +43,6 @@ window.addEventListener("load", function() {
     }  
 });
 
-checkIfModalTrue();
 checkWindowSize();
 
 window.addEventListener("resize", function(){
@@ -262,53 +261,21 @@ var checkbox = document.querySelector('input[name=onoffswitch]');
 
 checkbox.addEventListener('change', function() {
     if(this.checked) {
-        trans()
+       
         document.documentElement.setAttribute('data-theme', 'dark')
     } else {
-        trans()
+       
         document.documentElement.setAttribute('data-theme', 'light')
     }
 })
 
-let trans = () => {
-    document.documentElement.classList.add('transition');
-    window.setTimeout(() => {
-        document.documentElement.classList.remove('transition')
-    }, 1000)
-}
 
 
 
 
 /* Selector for modal container */
 
-//const msgContainer = document.querySelector('#content');
-// Window onload function - vi har gett den ett namn och kallat på den tidigare i filen på rad 30 nånting, även lagt queryselector högst i dokumentet
-function checkIfModalTrue () {
 
-    // check localstorage if message has already been seen
-
-    let checked = localStorage.getItem('checked');
-
-    if (checked === 'true') {
-        msgContainer.style.display = "none";
-
-        // selector for msg button
-        
-            
-
-        } else {
-            msgContainer.style.display = "block"
-        }
-        localStorage.setItem('checked', 'true');
-    }
-
-// Eventlistener for ok button
-
-btnMsg.addEventListener('click', () => {
-    console.log('entered modal')
-    msgContainer.style.display = 'none';
-});
 
 
 //         if (noteListItems.length == count) {

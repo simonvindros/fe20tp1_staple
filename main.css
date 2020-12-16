@@ -56,8 +56,8 @@ main {
 }
 
 
-#test {
-
+#new-note-btn {
+    cursor:pointer;
     color: #ffffff;
     border-radius: 25px;
     background-color: #07b1a3;
@@ -73,7 +73,7 @@ box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.75);
 
 }
 
-#test:hover {
+#new-note-btn:hover {
     cursor:pointer;
     border-radius: 25px;
     background-color: #068b80;

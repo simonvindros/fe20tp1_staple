@@ -7,6 +7,10 @@
     list-style: none;
     overflow-y: auto;
     background-color: var(--bg-note-list);
+    -webkit-transition: background-color 0.5s ease-in;
+  -moz-transition: background-color 0.5s ease-in;
+  -o-transition: background-color 0.5s ease-in;
+  transition: background-color 0.5s ease-in;
 }
 
 .note-list li {
@@ -15,6 +19,7 @@
 	min-height: min-content;
     cursor: pointer;
     background-color: var(--bg-note-items);
+    
 }
 
 .note-list li.active {

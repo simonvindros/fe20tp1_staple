@@ -1,7 +1,7 @@
 // Quire - **Rough** functional draft
 
 const titleInput = document.querySelector("#title-input");
-const newNoteBtn = document.querySelector("#new-note-btn");
+const newNoteBtn = document.querySelector("#test");
 const deleteNoteBtn = document.querySelector("#delete-note-btn");
 const printNoteBtn = document.querySelector("#print-note-btn");
 const logoBtn = document.querySelector("#logo-btn");

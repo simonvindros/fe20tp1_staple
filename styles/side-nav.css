@@ -1,6 +1,10 @@
 .side-nav {
 	width: 48px;
     background: var(--bg-nav);
+    -webkit-transition: background-color 0.5s ease-in;
+  -moz-transition: background-color 0.5s ease-in;
+  -o-transition: background-color 0.5s ease-in;
+  transition: background-color 0.5s ease-in;
 }
 
 .main-side-nav {
@@ -42,7 +46,6 @@
     font-size: 20px;
 }
 
-.fas.fa-
 .last-item {
     margin-top: auto;
 }

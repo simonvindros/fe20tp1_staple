@@ -96,8 +96,8 @@ function renderNote(obj) {
 	let plainTextBody = obj.body.replace(/<(\S*?)[^>]*>.*?|<.*? \/>/g, ""); // fix line-break removal ellipsis
     plainTextBody = plainTextBody.replaceAll("&nbsp;", " ");
 
-    favoriteTrueString = `<div class="note-wrapper"> <div class="content-wrapper"> <h3>${obj.title}</h3> <p>${plainTextBody}</p> </div> <div class="info-wrapper"> <div class="tag-wrapper"> <p>#food</p> </div> <div class="date-wrapper"> <p>${obj.date}</p> </div> </div> </div> <div class="toolbar-wrapper"><button><i class="fas fa-star"></i></button></i></button></div>`;
-    favoriteFalseString = `<div class="note-wrapper"> <div class="content-wrapper"> <h3>${obj.title}</h3> <p>${plainTextBody}</p> </div> <div class="info-wrapper"> <div class="tag-wrapper"> <p>#food</p> </div> <div class="date-wrapper"> <p>${obj.date}</p> </div> </div> </div> <div class="toolbar-wrapper"><button><i class="far fa-star"></i></button></i></button></div>`;
+    favoriteTrueString = `<div class="note-wrapper"> <div class="content-wrapper"> <h3>${obj.title}</h3> <p>${plainTextBody}</p> </div> <div class="info-wrapper"> <div class="tag-wrapper"> <p>#fe2020</p> </div> <div class="date-wrapper"> <p>${obj.date}</p> </div> </div> </div> <div class="toolbar-wrapper"><button><i class="fas fa-star"></i></button></i></button></div>`;
+    favoriteFalseString = `<div class="note-wrapper"> <div class="content-wrapper"> <h3>${obj.title}</h3> <p>${plainTextBody}</p> </div> <div class="info-wrapper"> <div class="tag-wrapper"> <p>#fe2020</p> </div> <div class="date-wrapper"> <p>${obj.date}</p> </div> </div> </div> <div class="toolbar-wrapper"><button><i class="far fa-star"></i></button></i></button></div>`;
     noteItem.innerHTML = checkState(obj.favorite);
 
     noteItem.setAttribute("data-id", obj.id);
@@ -167,9 +167,9 @@ function saveNote() {
 			
 			let noteItem = document.querySelector([`[data-id="${noteListArray[i].id}"]`]);
             if (noteListArray[i].favorite) { // fix similar to the other one, when variable-issues are solved
-                noteItem.innerHTML = `<div class="note-wrapper"> <div class="content-wrapper"> <h3>${noteListArray[i].title}</h3> <p>${plainTextBody}</p> </div> <div class="info-wrapper"> <div class="tag-wrapper"> <p>#food</p> </div> <div class="date-wrapper"> <p>${noteListArray[i].date}</p> </div> </div> </div> <div class="toolbar-wrapper"><button><i class="fas fa-star"></i></button></i></button></div>`;
+                noteItem.innerHTML = `<div class="note-wrapper"> <div class="content-wrapper"> <h3>${noteListArray[i].title}</h3> <p>${plainTextBody}</p> </div> <div class="info-wrapper"> <div class="tag-wrapper"> <p>#fe2020</p> </div> <div class="date-wrapper"> <p>${noteListArray[i].date}</p> </div> </div> </div> <div class="toolbar-wrapper"><button><i class="fas fa-star"></i></button></i></button></div>`;
             } else {
-                noteItem.innerHTML = `<div class="note-wrapper"> <div class="content-wrapper"> <h3>${noteListArray[i].title}</h3> <p>${plainTextBody}</p> </div> <div class="info-wrapper"> <div class="tag-wrapper"> <p>#food</p> </div> <div class="date-wrapper"> <p>${noteListArray[i].date}</p> </div> </div> </div> <div class="toolbar-wrapper"><button><i class="far fa-star"></i></button></i></button></div>`;
+                noteItem.innerHTML = `<div class="note-wrapper"> <div class="content-wrapper"> <h3>${noteListArray[i].title}</h3> <p>${plainTextBody}</p> </div> <div class="info-wrapper"> <div class="tag-wrapper"> <p>#fe2020</p> </div> <div class="date-wrapper"> <p>${noteListArray[i].date}</p> </div> </div> </div> <div class="toolbar-wrapper"><button><i class="far fa-star"></i></button></i></button></div>`;
             }
 
             document.title = `Quire - ${noteListArray[i].title}`;

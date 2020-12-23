@@ -269,25 +269,6 @@ checkbox.addEventListener('change', function() {
     }
 })
 
-
-
-
-
-/* Selector for modal container */
-
-
-
-
-//         if (noteListItems.length == count) {
-//             let emptyState = document.createElement("li");
-//             emptyState.classList.add("note-list-item");
-//             emptyState.classList.add("empty-state");
-//             emptyState.innerHTML = "No favorite notes :(";
-//             noteList.appendChild(emptyState);
-//         }
-//     }
-// }
-
 function showAllNotes() {
     let noteListItems = document.querySelectorAll('.note-list-item');
     for (let i = 0; i < noteListItems.length; i++) {

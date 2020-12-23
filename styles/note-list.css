@@ -1,9 +1,7 @@
 .note-list {
     flex: 1;
-	/* min-width: 225px; */
 	display: flex;
     flex-direction: column;
-    /* text-decoration: none; */
     list-style: none;
     overflow-y: auto;
     background-color: var(--bg-note-list);
@@ -26,10 +24,6 @@
     background-color: white;
 }
 
-/* .note-list li.hidden {
-    display: none;
-} */
-
 .note-list li.empty-state {
     margin: auto;
     background: none;
@@ -37,8 +31,6 @@
     color: grey;
     border: none;
 }
-
-/* https://css-tricks.com/examples/GradientBorder/ */
 
 .note-wrapper {
     flex: 1;
@@ -120,4 +112,11 @@
     text-overflow: ellipsis;
     word-wrap: break-word;
     word-break: break-all;
+}
+
+.horizontal-rule {
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+
 }

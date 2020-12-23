@@ -51,7 +51,7 @@ p {
     }
     
 
-    /* li dark mode == */ /* anchor-taggarna är borta, så denna måste ändras */
+    /* li dark mode == */ 
 .side-nav li{
     text-decoration: none;
     color: var(--color-li);

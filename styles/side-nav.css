@@ -2,9 +2,9 @@
 	width: 48px;
     background: var(--bg-nav);
     -webkit-transition: background-color 0.5s ease-in;
-  -moz-transition: background-color 0.5s ease-in;
-  -o-transition: background-color 0.5s ease-in;
-  transition: background-color 0.5s ease-in;
+    -moz-transition: background-color 0.5s ease-in;
+    -o-transition: background-color 0.5s ease-in;
+    transition: background-color 0.5s ease-in;
 }
 
 .main-side-nav {
@@ -25,10 +25,6 @@
     font-size: 1rem;
     cursor: pointer;
 }
-
-/* .side-nav li.hidden {
-    display: none;
-} */
 
 .side-nav li:hover {
     background-color: var(--hover);

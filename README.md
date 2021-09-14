@@ -1,9 +1,14 @@
-# Quire - Teamprojekt 1, FE20 KYH
+# Quire - Teamproject 1, FE20 KYH
 
-Grupp Staple:
-Robert W.
-Emma F.
-Kevin M.
+### Description
+This project was created as an assignment to the groups Front-end development Class at [KYH](https://kyh.se/)
+The Assignment was to create a note taking application that had to be both good looking and responsive. 
+
+
+Authors:
+[Robert W.](https://github.com/robonexx)
+[Emma F](https://github.com/EmmaFranzen)
+[Kevin M.](https://github.com/Kevmorales/)
 Simon L.
 Kevin N.
 
